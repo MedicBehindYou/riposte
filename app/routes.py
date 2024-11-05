@@ -3,8 +3,8 @@ from pydantic import BaseModel
 from fastapi import APIRouter, Depends, HTTPException
 from app.models import Riposte, engine
 from sqlalchemy.orm import sessionmaker, Session
-from sqlalchemy.exc import SQLAlchemyError
-from .misc import send_email
+from .models import Token
+from .action import execute
 
 
 router = APIRouter()
@@ -32,5 +32,11 @@ async def riposteRoute(token, riposteSubmission: riposteClass, db: Session = Dep
         mac=riposteSubmission.mac, 
         output=riposteSubmission.output
     )
+    tokenCheck = db.query(Token).filter(Token.token == riposteSubmit.token).first() is not None
+
+    if tokenCheck:
+        execute(token, riposteSubmit, db)
+    else:
+        raise HTTPException(status_code=404, detail="Token not found")
 
     return riposteSubmit

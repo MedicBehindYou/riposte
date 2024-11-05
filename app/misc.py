@@ -14,7 +14,7 @@ def load_config(config_file=os.path.join(os.path.dirname(__file__), 'config', 'c
         print(error_message)
         return None
 
-def send_email(subject, body, recipient):
+def send_email(subject, body, recipients):
    config = load_config()
    if config:
       SMTP_USER = (config['General']['smtp_user'])
@@ -23,8 +23,8 @@ def send_email(subject, body, recipient):
    msg = MIMEText(body)
    msg['Subject'] = subject
    msg['From'] = SMTP_USER
-   msg['To'] = recipient
+   msg['To'] = ", ".join(recipients)
    with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp_server:
       smtp_server.login(SMTP_USER, SMTP_PASS)
-      smtp_server.sendmail(SMTP_USER, recipient, msg.as_string())
+      smtp_server.sendmail(SMTP_USER, recipients, msg.as_string())
    print("Message sent!")
