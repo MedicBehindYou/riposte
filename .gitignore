@@ -2,3 +2,9 @@
 app/config/config.ini
 alembic.ini
 alembic
+test
+venv
+learn.py
+example.py
+plans
+setup.sh
