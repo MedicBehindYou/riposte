@@ -1,3 +1,4 @@
+recipients = ['esmith@impactnetworking.com', 'sredman@impactnetworking.com']
 if 'SCCM Found: ccmsetup.exe' in riposteSubmit.output:
     Subject = "SCCM detected on Device" + riposteSubmit.hostname
     Body = riposteSubmit.token + "\n" + riposteSubmit.hostname + "\n" + riposteSubmit.ip + "\n" + riposteSubmit.output

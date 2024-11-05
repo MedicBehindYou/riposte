@@ -1,3 +1,4 @@
+recipients = ['esmith@impactnetworking.com', 'sredman@impactnetworking.com']
 if 'Running' in riposteSubmit.output:
     Subject = "ATP detected on Device" + riposteSubmit.hostname
     Body = riposteSubmit.token + "\n" + riposteSubmit.hostname + "\n" + riposteSubmit.ip + "\n" + riposteSubmit.output
