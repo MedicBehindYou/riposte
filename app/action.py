@@ -1,6 +1,6 @@
-from sqlalchemy.exc import SQLAlchemyError
-from .misc import send_email
-from fastapi import HTTPException
+from sqlalchemy.exc import SQLAlchemyError  # noqa: F401
+from .misc import send_email  # noqa: F401
+from fastapi import HTTPException  # noqa: F401
 import os
 
 recipients = ['esmith@impactnetworking.com', 'sredman@impactnetworking.com']
