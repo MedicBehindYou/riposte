@@ -7,3 +7,4 @@ venv
 learn.py
 example.py
 plans
+app/config/scripts/*

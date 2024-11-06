@@ -5,6 +5,7 @@ from app.models import Riposte, engine
 from sqlalchemy.orm import sessionmaker, Session
 from .models import Token
 from .action import execute
+import datetime
 
 
 router = APIRouter()
@@ -32,7 +33,10 @@ async def riposteRoute(token, riposteSubmission: riposteClass, db: Session = Dep
         mac=riposteSubmission.mac, 
         output=riposteSubmission.output
     )
-    tokenCheck = db.query(Token).filter(Token.token == riposteSubmit.token).first() is not None
+
+    expiryDate = db.query(Token.expiry).filter(Token.token == riposteSubmit.token)
+    result = expiryDate.first()[0]
+    tokenCheck = db.query(Token).filter(Token.token == riposteSubmit.token, datetime.date.today() < datetime.datetime.strptime(result, "%d/%m/%Y").date()).first() is not None
 
     if tokenCheck:
         execute(token, riposteSubmit, db)
