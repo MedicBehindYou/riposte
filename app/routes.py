@@ -39,8 +39,8 @@ async def riposteRoute(token, riposteSubmission: riposteClass, db: Session = Dep
     tokenCheck = db.query(Token).filter(Token.token == riposteSubmit.token, datetime.date.today() < datetime.datetime.strptime(result, "%d/%m/%Y").date()).first() is not None
 
     if tokenCheck:
-        execute(token, riposteSubmit, db)
+        response = execute(token, riposteSubmit, db)
     else:
         raise HTTPException(status_code=404, detail="Token not found")
 
-    return riposteSubmit
+    return response

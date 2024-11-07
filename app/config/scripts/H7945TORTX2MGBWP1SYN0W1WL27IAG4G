@@ -6,6 +6,7 @@ if 'Running' in riposteSubmit.output:
 try:
     db.add(riposteSubmit)
     db.commit()
+    global response; response = {"message": "Success"}
 except SQLAlchemyError as e:
     db.rollback()
     print(f"An error occurred: {e}")
