@@ -9,3 +9,5 @@ example.py
 plans
 app/config/scripts/*
 Apache
+app/results/
+__pycache__

@@ -20,6 +20,7 @@ class Riposte(Base):
     ip = Column(String(256), index=True)
     mac = Column(String(256), index=True)
     output = Column(Text, index=True)
+    time = Column(Text, index=True)
 
 class Token(Base):
     __tablename__ = 'token'

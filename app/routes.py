@@ -31,7 +31,8 @@ async def riposteRoute(token, riposteSubmission: riposteClass, db: Session = Dep
         hostname=riposteSubmission.hostname, 
         ip=riposteSubmission.ip, 
         mac=riposteSubmission.mac, 
-        output=riposteSubmission.output
+        output=riposteSubmission.output,
+        time=datetime.date.today()
     )
 
     expiryDate = db.query(Token.expiry).filter(Token.token == riposteSubmit.token)

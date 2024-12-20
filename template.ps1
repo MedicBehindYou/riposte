@@ -2,6 +2,8 @@
 $token = ""
 
 # Host vars
+$ErrorActionPreference = 'SilentlyContinue'
+[Net.ServicePointManager]::SecurityProtocol = "tls12, tls11, tls" # Helps avoid issues with TLS on some servers
 $global:ipAddr = ""
 $global:macAddr = ""
 $networkAdapters = Get-NetAdapter -Physical | Where-Object { $_.Status -eq 'Up' }
