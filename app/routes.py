@@ -22,6 +22,7 @@ class riposteClass(BaseModel):
     hostname: str
     ip: str
     mac: str
+    pubip: str
     output: str
 
 @router.post("/riposte/{token}")
@@ -30,7 +31,8 @@ async def riposteRoute(token, riposteSubmission: riposteClass, db: Session = Dep
         token=token, 
         hostname=riposteSubmission.hostname, 
         ip=riposteSubmission.ip, 
-        mac=riposteSubmission.mac, 
+        mac=riposteSubmission.mac,
+        pubip=riposteSubmission.pubip,
         output=riposteSubmission.output,
         time=datetime.datetime.now()
     )

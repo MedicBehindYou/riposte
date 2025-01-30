@@ -19,6 +19,7 @@ class Riposte(Base):
     hostname = Column(String(256), index=True)
     ip = Column(String(256), index=True)
     mac = Column(String(256), index=True)
+    pubip = Column(String(256), index=True)
     output = Column(Text, index=True)
     time = Column(Text, index=True)
 

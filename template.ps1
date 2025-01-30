@@ -2,6 +2,7 @@
 $token = ""
 
 # Host vars
+$pubip = Invoke-RestMethod -Uri "http://ifconfig.me/ip"
 $ErrorActionPreference = 'SilentlyContinue'
 [Net.ServicePointManager]::SecurityProtocol = "tls12, tls11, tls" # Helps avoid issues with TLS on some servers
 $global:ipAddr = ""
@@ -39,6 +40,7 @@ $body = @{
     "hostname" = $env:computername
     "ip" = $ipAddr
     "mac" = $macAddr
+    "pubip" = [string]$pubip
     "output" = $fullOutput
 } | ConvertTo-Json
 
