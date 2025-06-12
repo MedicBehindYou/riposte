@@ -10,5 +10,12 @@ def execute(token, riposteSubmit, db):
     path = os.path.join(os.path.dirname(__file__), 'config', 'scripts', token)
     with open(path) as f:
         s = f.read()
-    exec(s)
-    return response
+
+    local_vars = {
+        "riposteSubmit": riposteSubmit,
+        "db": db,
+        "response": {"message": "Script Returned No Response"}
+    }
+    
+    exec(s, {}, local_vars)
+    return local_vars["response"]

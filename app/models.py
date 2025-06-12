@@ -16,12 +16,14 @@ class Riposte(Base):
     __tablename__ = 'riposte'
     id = Column(Integer, primary_key=True, autoincrement=True)
     token = Column(String(32), index=True)
+    ticket = Column(String(32), index=True)
     hostname = Column(String(256), index=True)
     ip = Column(String(256), index=True)
     mac = Column(String(256), index=True)
     pubip = Column(String(256), index=True)
     output = Column(Text, index=True)
     time = Column(Text, index=True)
+    result = Column(String(32), index=True)
 
 class Token(Base):
     __tablename__ = 'token'

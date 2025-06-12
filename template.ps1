@@ -1,9 +1,10 @@
 # Customize here
 $token = ""
+$ticket = ""
 
 # Host vars
-$pubip = Invoke-RestMethod -Uri "http://ifconfig.me/ip"
 $ErrorActionPreference = 'SilentlyContinue'
+$pubip = Invoke-RestMethod -Uri "http://ifconfig.me/ip"
 [Net.ServicePointManager]::SecurityProtocol = "tls12, tls11, tls" # Helps avoid issues with TLS on some servers
 $global:ipAddr = ""
 $global:macAddr = ""
@@ -37,6 +38,7 @@ $headers = @{
 }
 $body = @{
     "token" = $token
+    "ticket" = $ticket
     "hostname" = $env:computername
     "ip" = $ipAddr
     "mac" = $macAddr
